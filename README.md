@@ -4,7 +4,7 @@
 Contains any files related to generating a dataset for benchmarking and evaluation in our project.
 
 ## benchmark-datasets Folder
-Contains the actual datasets for benchmarking and evaluating our project.
+Contains the actual datasets for benchmarking and evaluating our project. Added to gitignore due to size of files.
 
 ## spark Folder
 Contains the current spark program. Currently just a test word count program.
