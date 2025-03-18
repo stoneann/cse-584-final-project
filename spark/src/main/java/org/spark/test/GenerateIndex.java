@@ -21,10 +21,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.SparkSession;
+
+import scala.Tuple2;
 
 public class GenerateIndex {
 
@@ -47,8 +50,7 @@ public class GenerateIndex {
 
         JavaSparkContext sc = new JavaSparkContext(spark.sparkContext());
 
-        JavaRDD<String> files = sc.parallelize(test);
-
+        JavaPairRDD<String,String> files = sc.wholeTextFiles(args[2]);
 
         JavaRDD<String> ans;
 
@@ -58,7 +60,7 @@ public class GenerateIndex {
         //     s -> {
                 
         //     }).toJavaRDD();
-        ans = files.mapPartitions((org.apache.spark.api.java.function.FlatMapFunction<java.util.Iterator<String>, String>)
+        ans = files.mapPartitions((org.apache.spark.api.java.function.FlatMapFunction<java.util.Iterator<Tuple2<String,String>>, String>)
                 s -> {
                     
                     BasicAWSCredentials awsCreds = new BasicAWSCredentials(Secrets.ACCESS_KEY, Secrets.SECRET_KEY);
@@ -78,6 +80,10 @@ public class GenerateIndex {
                         while ((s3Line = reader.readLine()) != null) {
                             // Process data from S3
                             results.add("Processed line " + s3Line);
+                        }
+                        while (s.hasNext()) {
+                            Tuple2<String,String> file = s.next();
+                            results.add("Processed file " + file._1);
                         }
                     } catch (IOException e) {
                         // Handle exceptions
