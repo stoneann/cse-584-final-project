@@ -3,6 +3,7 @@ import sys
 import os 
 import csv
 import random
+import string
 
 # Class to generate benchmarking data
 class GenerateData:
@@ -13,11 +14,13 @@ class GenerateData:
         self.rtm = rtm
         self.rbs = rbs
         self.sorted = sorted
-        self.curr_bytes = 0
 
     # Generate a row with an id, join id, and a random string to get the record bytes to the desired amount
     def add_row(self, table, id, join_id):
-        table.append({'id': id, 'join_id': join_id, 'random_string': bytes(self.rbs - self.curr_bytes)})
+        # Create a random string with the required padding size
+        padding_size = self.rbs - (len(str(id)) + len(',')  + len(str(join_id)) + len(','))
+        random_string = ''.join(random.choices(string.ascii_letters + string.digits, k=padding_size))
+        table.append({'id': id, 'join_id': join_id, 'random_string': random_string})
 
     # Creates the directory and writes the data to the file
     def create_directory_and_write_csv(self, dir_name, file_name, data):
@@ -52,12 +55,11 @@ class GenerateData:
             random.shuffle(join_ids)
 
         file_num = 1
-        self.curr_bytes = sys.getsizeof(id) + sys.getsizeof(join_ids[0])
         while id < cardinality:
             self.add_row(table, id, join_ids[id - 1])
             id = id + 1
             # if we have 100 MB, write table to file and clear it
-            if len(table) * self.rbs >= 100000:
+            if len(table) * self.rbs >= 100000000:
                 self.export_to_file(table, l_or_r, file_num)
                 file_num = file_num + 1
         self.export_to_file(table, l_or_r, file_num)
@@ -70,8 +72,8 @@ class GenerateData:
 
 
 @click.command()
-@click.option('--left-table-cardinality', '-ltc', type=click.INT, default=100, help='Cardinality of Left Table')
-@click.option('--right-table-cardinality', '-rtc', type=click.INT, default=100, help='Cardinality of Right Table')
+@click.option('--left-table-cardinality', '-ltc', type=click.INT, default=100000, help='Cardinality of Left Table')
+@click.option('--right-table-cardinality', '-rtc', type=click.INT, default=100000, help='Cardinality of Right Table')
 @click.option('--left-table-mapping', '-ltm', type=click.INT, default=1, help='Number of records in left table that joins to right.')
 @click.option('--right-table-mapping', '-rtm', type=click.INT, default=1, help='Number of records in right table that joins to left.')
 @click.option('--record-byte-size', '-rbs', type=click.INT, default=1000, help='Size of an individual record in bytes.')
