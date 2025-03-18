@@ -2,15 +2,17 @@ import click
 import sys
 import os 
 import csv
+import random
 
 # Class to generate benchmarking data
 class GenerateData:
-    def __init__(self, ltc, rtc, ltm, rtm, rbs):
+    def __init__(self, ltc, rtc, ltm, rtm, rbs, sorted):
         self.ltc = ltc
         self.rtc = rtc
         self.ltm = ltm
         self.rtm = rtm
         self.rbs = rbs
+        self.sorted = sorted
         self.curr_bytes = 0
 
     # Generate a row with an id, join id, and a random string to get the record bytes to the desired amount
@@ -34,21 +36,26 @@ class GenerateData:
 
 
     def export_to_file(self, table, l_or_r, num):
-        self.create_directory_and_write_csv(f"benchmark-datasets/L{self.ltc}_R{self.rtc}_M{self.ltm}-{self.rtm}_RS{self.rbs}/{l_or_r}", f"{num}.csv", table)
+        s_bool = "F"
+        if self.sorted:
+            s_bool = "T"
+        self.create_directory_and_write_csv(f"benchmark-datasets/L{self.ltc}_R{self.rtc}_M{self.ltm}-{self.rtm}_RS{self.rbs}_S{s_bool}/{l_or_r}", f"{num}.csv", table)
         table.clear()
 
     # fills a table
     def generate_table(self, cardinality, mapping, l_or_r):
         table = []
         id = 1
-        num_in_mapping = 0
+        join_ids = [(i // mapping) + 1 for i in range(cardinality)]
+
+        if not self.sorted:
+            random.shuffle(join_ids)
+
         file_num = 1
-        self.curr_bytes = sys.getsizeof(id) + sys.getsizeof(id - num_in_mapping)
+        self.curr_bytes = sys.getsizeof(id) + sys.getsizeof(join_ids[0])
         while id < cardinality:
-            # TODO: Change implementation to ensure that the join index doesn't go out of bounds
-            self.add_row(table, id, id - num_in_mapping)
+            self.add_row(table, id, join_ids[id - 1])
             id = id + 1
-            num_in_mapping = ((num_in_mapping + 1) % mapping)
             # if we have 100 MB, write table to file and clear it
             if len(table) * self.rbs >= 100000:
                 self.export_to_file(table, l_or_r, file_num)
@@ -68,13 +75,14 @@ class GenerateData:
 @click.option('--left-table-mapping', '-ltm', type=click.INT, default=1, help='Number of records in left table that joins to right.')
 @click.option('--right-table-mapping', '-rtm', type=click.INT, default=1, help='Number of records in right table that joins to left.')
 @click.option('--record-byte-size', '-rbs', type=click.INT, default=1000, help='Size of an individual record in bytes.')
-def main(left_table_cardinality, right_table_cardinality, left_table_mapping, right_table_mapping, record_byte_size):
+@click.option('--sorted', '-s', type=click.BOOL, default=False, help='If true, dataset will be sorted by join index. If false, datset will be random.')
+def main(left_table_cardinality, right_table_cardinality, left_table_mapping, right_table_mapping, record_byte_size, sorted):
     """
     A program to generate a dataset
     """
     click.echo(f"Generating a dataset that with tables of cardinality {left_table_cardinality} and {right_table_cardinality}.")
     click.echo(f"It will create a {left_table_mapping} - {right_table_mapping} mapping.")
-    generate_data = GenerateData(left_table_cardinality, right_table_cardinality, left_table_mapping, right_table_mapping, record_byte_size)
+    generate_data = GenerateData(left_table_cardinality, right_table_cardinality, left_table_mapping, right_table_mapping, record_byte_size, sorted)
     generate_data.generate_data()
 
 

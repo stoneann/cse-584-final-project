@@ -6,7 +6,7 @@ Contains any files related to generating a dataset for benchmarking and evaluati
 ## benchmark-datasets Folder
 Contains the actual datasets for benchmarking and evaluating our project. Added to gitignore due to size of files. Note the following naming schema:
 
-<strong>L\<left_table_cardinality>_R\<right_table_cardinality>_M\<left_table_mapping>-\<right_table_mapping>_RS\<record_size>/\<l_or_r>/</strong>
+<strong>L\<left_table_cardinality>_R\<right_table_cardinality>_M\<left_table_mapping>-\<right_table_mapping>_RS\<record_size>_S\<sorted>/\<l_or_r>/</strong>
 
 Definitions:
 * <strong>L</strong>: Left table
@@ -18,6 +18,7 @@ Definitions:
 * <strong>right_table_mapping</strong>: Num rows in the right table that map to a specific row in the left table
 * <strong>record_size</strong>: Number of bytes in a record
 * <strong>l_or_r</strong>: Left or Right table. L if left, R if right.
+* <strong>sorted</strong>: T or F. If T, sorted based on join_id. If F, random join_ids.
 
 ## spark Folder
 Contains the current spark program. Currently just a test word count program.
