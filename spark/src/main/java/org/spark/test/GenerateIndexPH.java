@@ -35,7 +35,8 @@ public class CsvJoinExample {
 
         // Join the two DataFrames on the join column.
         // Should be fast, since operating only with record_ids and join_column
-        Dataset<Row> joined = df1.join(df2, "join_column");
+        Dataset<Row> index = df1.join(df2, "join_column")
+                                .drop("big_table_rid", "join_column");
 
         // Write the joined result as CSV to the output path
         joined.write()
