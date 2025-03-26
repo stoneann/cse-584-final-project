@@ -24,7 +24,7 @@ import com.amazonaws.services.s3.model.S3Object;
 
 import scala.Function1;
 
-public class GenerateIndex {
+public class SimpleJoin {
     public static void main(String[] args) throws IOException {
         if (args.length < 3) {
             System.err.println("Usage: CsvJoinExample <big_table_csv_path> <small_table_csv_path> <output_path>");
@@ -40,32 +40,32 @@ public class GenerateIndex {
                 .appName("CSV Join Example")
                 .getOrCreate();
 
+        //One partition test
+
         //Big table
         Dataset<Row> df1 = spark.read()
                 .option("header", "false")
                 .csv(csv1Path)
-                .select("_c0", "_c1") // Selecting the first two columns
+                .select("_c0", "_c1", "_c2") // Selecting the first two columns
                 .withColumnRenamed("_c0", "big_table_rid")
                 .withColumnRenamed("_c1", "join_column")
-                .withColumn("source_file", functions.input_file_name());
+                .withColumnRenamed("_c2", "data_1");
 
         //Small table
         Dataset<Row> df2 = spark.read()
                 .option("header", "false")
                 .csv(csv2Path)
-                .select("_c0", "_c1")
+                .select("_c0", "_c1", "_c2")
                 .withColumnRenamed("_c0", "small_table_rid")
                 .withColumnRenamed("_c1", "join_column")
-                .withColumn("sm_source_file", functions.input_file_name());
+                .withColumnRenamed("_c2", "data_2")
+                .withColumn("source_file", functions.input_file_name());
 
 
 
         // Join the two DataFrames on the join column.
         // Should be fast, since operating only with record_ids and join_column
-        Dataset<Row> index = df1.join(df2, "join_column")
-                    .drop("big_table_rid", "join_column")
-                    .withColumn("source_file", functions.expr("substring_index(substring_index(source_file, '/', -1), '.', 1)"))
-                    .withColumn("sm_source_file", functions.expr("substring_index(substring_index(sm_source_file, '/', -1), '.', 1)"));
+        Dataset<Row> result = df1.join(df2, "join_column");
         //                         .map((Function1<Row, Row>) row -> {
         //         String sourceFile = row.getAs("source_file");
         //         String smSourceFile = row.getAs("sm_source_file");
@@ -80,7 +80,7 @@ public class GenerateIndex {
         //                                 .add("sm_source_file", "string")));
 
         // Write the joined result as CSV to the output path
-        index.repartition(1).write().mode(SaveMode.Overwrite).partitionBy("sm_source_file")
+        result.write().mode(SaveMode.Overwrite)
               .option("header", "true")
               .csv(outputPath);
 

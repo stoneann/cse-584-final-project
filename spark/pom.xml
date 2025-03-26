@@ -8,19 +8,24 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
         <java.version>17</java.version>
-        <exec.mainClass>org.spark.test.App</exec.mainClass>
+        <exec.mainClass>org.spark.test.StreamJoin</exec.mainClass>
     </properties>
     <dependencies>
         <!-- Add your dependencies here -->
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.12</artifactId>
-            <version>3.1.2</version>
+            <artifactId>spark-core_2.13</artifactId>
+            <version>3.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk</artifactId>
+            <version>1.12.118</version>
         </dependency>
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.12</artifactId>
-            <version>3.1.2</version>
+            <artifactId>spark-sql_2.13</artifactId>
+            <version>3.5.4</version>
         </dependency>
     </dependencies>
 </project>

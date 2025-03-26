@@ -35,6 +35,29 @@ Follow these instructions to set up an EMR cluster: https://medium.com/big-data-
 
 Once the cluster is set up, you can configure a step. Use the same setup in the instructions, use the jar you uploaded to the S3 bucket in the application location section, and your class parameter should be org.spark.test.App (whatever has the main function). For the test spark program, the first parameter is the text file input, and the second parameter is the directory to dump the output to, same as the instructions.
 
+## GenerateIndex.java
+
+Generates the index. 
+
+Argument 1: Big table location (e.g. s3://584spark-east2/datasets/L1000000_R1000000_M1-1_RS1000_SF/L/)
+Argument 2: Small table location (e.g. s3://584spark-east2/datasets/L1000000_R1000000_M1-1_RS1000_SF/R/)
+Argument 3: Output path (e.g. s3://584spark-east2/output-index/)
+
+This will generate a list of csv files, one corresponding to each small table file, of the format big_table_file_number, small_table_id. Remember your output path for running the stream join job.
+
+## StreamJoin.java
+
+Joins using only a few partitions of the big table by using the index, the results are dumped to S3 but in practice it should be dumped to Kafka or directly to consumers.
+
+Argument 1: Big table location (e.g. s3://584spark-east2/datasets/L1000000_R1000000_M1-1_RS1000_SF/L/)
+Argument 2: Small table location (e.g. s3://584spark-east2/datasets/L1000000_R1000000_M1-1_RS1000_SF/R/)
+Argument 3: Output path (e.g. s3://584spark-east2/output-join/)
+Argument 4: Index path (e.g. s3://584spark-east2/output-index/)
+Argument 5: Index file name. Due to spark limitations, renaming output files are hard so we have to use whatever default name Spark uses. Look in one of the sm_source_file directories for a file and copy the name, this file name is the exact same for all index files. (e.g. part-00000-05e3e96a-315b-4248-b13f-80e227fa257f.c000.csv)
+Argument 6: List of big table file numbers to be used, separated by commas, no spaces. (e.g. 3,4,5)
+
+Performs the join with the given big table files using the index.
+
 # IMPORTANT
 
 Delete your EMR as soon as you are done with it. Sucks, but these things are expensive (~1$ per hour). Also, please don't mess up my AWS console (yall have admin privileges).
