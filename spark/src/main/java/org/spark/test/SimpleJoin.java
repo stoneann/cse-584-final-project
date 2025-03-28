@@ -39,7 +39,11 @@ public class SimpleJoin {
         SparkSession spark = SparkSession.builder()
                 .appName("CSV Join Example")
                 .getOrCreate();
+                
+        join(spark, csv1Path, csv2Path, outputPath);
+    }
 
+    public static void join(SparkSession spark, String csv1Path, String csv2Path, String outputPath) {
         //One partition test
 
         //Big table
