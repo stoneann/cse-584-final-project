@@ -8,8 +8,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
         <java.version>17</java.version>
-        <exec.mainClass>org.spark.test.StreamJoin</exec.mainClass>
+        <!-- <exec.mainClass>org.spark.test.StreamJoin</exec.mainClass> -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+
     <dependencies>
         <!-- Add your dependencies here -->
         <dependency>
@@ -27,11 +30,11 @@
             <artifactId>spark-sql_2.13</artifactId>
             <version>3.5.4</version>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.11.0-M1</version>
             <scope>test</scope>
-        </dependency>
+        </dependency> -->
     </dependencies>
 </project>

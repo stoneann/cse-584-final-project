@@ -1,0 +1,209 @@
+25/03/31 17:13:07 WARN Utils: Your hostname, aryan-XPS-13-9370 resolves to a loopback address: 127.0.1.1; using 100.64.0.123 instead (on interface wlp2s0)
+25/03/31 17:13:07 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+25/03/31 17:13:08 INFO SparkContext: Running Spark version 3.5.5
+25/03/31 17:13:08 INFO SparkContext: OS info Linux, 6.5.0-18-generic, amd64
+25/03/31 17:13:08 INFO SparkContext: Java version 17.0.12
+25/03/31 17:13:08 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/03/31 17:13:08 INFO ResourceUtils: ==============================================================
+25/03/31 17:13:08 INFO ResourceUtils: No custom resources configured for spark.driver.
+25/03/31 17:13:08 INFO ResourceUtils: ==============================================================
+25/03/31 17:13:08 INFO SparkContext: Submitted application: Simple Application
+25/03/31 17:13:08 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+25/03/31 17:13:08 INFO ResourceProfile: Limiting resource is cpu
+25/03/31 17:13:08 INFO ResourceProfileManager: Added ResourceProfile id: 0
+25/03/31 17:13:08 INFO SecurityManager: Changing view acls to: aryan
+25/03/31 17:13:08 INFO SecurityManager: Changing modify acls to: aryan
+25/03/31 17:13:08 INFO SecurityManager: Changing view acls groups to: 
+25/03/31 17:13:08 INFO SecurityManager: Changing modify acls groups to: 
+25/03/31 17:13:08 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: aryan; groups with view permissions: EMPTY; users with modify permissions: aryan; groups with modify permissions: EMPTY
+25/03/31 17:13:08 INFO Utils: Successfully started service 'sparkDriver' on port 35449.
+25/03/31 17:13:08 INFO SparkEnv: Registering MapOutputTracker
+25/03/31 17:13:08 INFO SparkEnv: Registering BlockManagerMaster
+25/03/31 17:13:08 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+25/03/31 17:13:08 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+25/03/31 17:13:08 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+25/03/31 17:13:08 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-233501e6-9f4a-455c-be93-d032827ba6e6
+25/03/31 17:13:08 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+25/03/31 17:13:08 INFO SparkEnv: Registering OutputCommitCoordinator
+25/03/31 17:13:08 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+25/03/31 17:13:08 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+25/03/31 17:13:08 INFO SparkContext: Added JAR file:/home/aryan/584/cse-584-final-project/spark/target/584proj2-1.0-SNAPSHOT.jar at spark://100.64.0.123:35449/jars/584proj2-1.0-SNAPSHOT.jar with timestamp 1743455588277
+25/03/31 17:13:09 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://aryan-XPS-13-9370:7077...
+25/03/31 17:13:09 INFO TransportClientFactory: Successfully created connection to aryan-XPS-13-9370/127.0.1.1:7077 after 20 ms (0 ms spent in bootstraps)
+25/03/31 17:13:09 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20250331171309-0015
+25/03/31 17:13:09 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20250331171309-0015/0 on worker-20250331155344-100.64.0.123-45661 (100.64.0.123:45661) with 8 core(s)
+25/03/31 17:13:09 INFO StandaloneSchedulerBackend: Granted executor ID app-20250331171309-0015/0 on hostPort 100.64.0.123:45661 with 8 core(s), 1024.0 MiB RAM
+25/03/31 17:13:09 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33501.
+25/03/31 17:13:09 INFO NettyBlockTransferService: Server created on 100.64.0.123:33501
+25/03/31 17:13:09 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/03/31 17:13:09 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 100.64.0.123, 33501, None)
+25/03/31 17:13:09 INFO BlockManagerMasterEndpoint: Registering block manager 100.64.0.123:33501 with 434.4 MiB RAM, BlockManagerId(driver, 100.64.0.123, 33501, None)
+25/03/31 17:13:09 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 100.64.0.123, 33501, None)
+25/03/31 17:13:09 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 100.64.0.123, 33501, None)
+25/03/31 17:13:09 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20250331171309-0015/0 is now RUNNING
+25/03/31 17:13:09 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+25/03/31 17:13:09 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+25/03/31 17:13:09 INFO SharedState: Warehouse path is 'file:/home/aryan/584/cse-584-final-project/spark/spark-warehouse'.
+25/03/31 17:13:10 INFO InMemoryFileIndex: It took 43 ms to list leaf files for 1 paths.
+25/03/31 17:13:10 INFO InMemoryFileIndex: It took 3 ms to list leaf files for 1 paths.
+25/03/31 17:13:11 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (100.64.0.123:58294) with ID 0,  ResourceProfileId 0
+25/03/31 17:13:11 INFO BlockManagerMasterEndpoint: Registering block manager 100.64.0.123:35761 with 434.4 MiB RAM, BlockManagerId(0, 100.64.0.123, 35761, None)
+25/03/31 17:13:12 INFO FileSourceStrategy: Pushed Filters: 
+25/03/31 17:13:12 INFO FileSourceStrategy: Post-Scan Filters: (length(trim(value#0, None)) > 0)
+25/03/31 17:13:13 INFO CodeGenerator: Code generated in 204.142763 ms
+25/03/31 17:13:13 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 199.5 KiB, free 434.2 MiB)
+25/03/31 17:13:13 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 34.5 KiB, free 434.2 MiB)
+25/03/31 17:13:13 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 100.64.0.123:33501 (size: 34.5 KiB, free: 434.4 MiB)
+25/03/31 17:13:13 INFO SparkContext: Created broadcast 0 from csv at Checker.java:23
+25/03/31 17:13:13 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+25/03/31 17:13:13 INFO SparkContext: Starting job: csv at Checker.java:23
+25/03/31 17:13:13 INFO DAGScheduler: Got job 0 (csv at Checker.java:23) with 1 output partitions
+25/03/31 17:13:13 INFO DAGScheduler: Final stage: ResultStage 0 (csv at Checker.java:23)
+25/03/31 17:13:13 INFO DAGScheduler: Parents of final stage: List()
+25/03/31 17:13:13 INFO DAGScheduler: Missing parents: List()
+25/03/31 17:13:13 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[3] at csv at Checker.java:23), which has no missing parents
+25/03/31 17:13:13 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 13.5 KiB, free 434.2 MiB)
+25/03/31 17:13:13 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 6.4 KiB, free 434.2 MiB)
+25/03/31 17:13:13 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 100.64.0.123:33501 (size: 6.4 KiB, free: 434.4 MiB)
+25/03/31 17:13:13 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1585
+25/03/31 17:13:13 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[3] at csv at Checker.java:23) (first 15 tasks are for partitions Vector(0))
+25/03/31 17:13:13 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+25/03/31 17:13:13 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (100.64.0.123, executor 0, partition 0, PROCESS_LOCAL, 9902 bytes) 
+25/03/31 17:13:14 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 100.64.0.123:35761 (size: 6.4 KiB, free: 434.4 MiB)
+25/03/31 17:13:14 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 100.64.0.123:35761 (size: 34.5 KiB, free: 434.4 MiB)
+25/03/31 17:13:14 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 1075 ms on 100.64.0.123 (executor 0) (1/1)
+25/03/31 17:13:14 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+25/03/31 17:13:14 INFO DAGScheduler: ResultStage 0 (csv at Checker.java:23) finished in 1.182 s
+25/03/31 17:13:14 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+25/03/31 17:13:14 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+25/03/31 17:13:14 INFO DAGScheduler: Job 0 finished: csv at Checker.java:23, took 1.209773 s
+25/03/31 17:13:14 INFO CodeGenerator: Code generated in 9.136865 ms
+25/03/31 17:13:14 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 100.64.0.123:33501 in memory (size: 6.4 KiB, free: 434.4 MiB)
+25/03/31 17:13:14 INFO FileSourceStrategy: Pushed Filters: 
+25/03/31 17:13:14 INFO BlockManagerInfo: Removed broadcast_1_piece0 on 100.64.0.123:35761 in memory (size: 6.4 KiB, free: 434.4 MiB)
+25/03/31 17:13:14 INFO FileSourceStrategy: Post-Scan Filters: 
+25/03/31 17:13:14 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 199.5 KiB, free 434.0 MiB)
+25/03/31 17:13:14 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 34.5 KiB, free 433.9 MiB)
+25/03/31 17:13:14 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 100.64.0.123:33501 (size: 34.5 KiB, free: 434.3 MiB)
+25/03/31 17:13:14 INFO SparkContext: Created broadcast 2 from csv at Checker.java:23
+25/03/31 17:13:14 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+25/03/31 17:13:15 INFO InMemoryFileIndex: It took 2 ms to list leaf files for 1 paths.
+25/03/31 17:13:15 INFO InMemoryFileIndex: It took 2 ms to list leaf files for 1 paths.
+25/03/31 17:13:15 INFO FileSourceStrategy: Pushed Filters: 
+25/03/31 17:13:15 INFO FileSourceStrategy: Post-Scan Filters: (length(trim(value#29, None)) > 0)
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 199.5 KiB, free 433.7 MiB)
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 34.5 KiB, free 433.7 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 100.64.0.123:33501 (size: 34.5 KiB, free: 434.3 MiB)
+25/03/31 17:13:15 INFO SparkContext: Created broadcast 3 from csv at Checker.java:30
+25/03/31 17:13:15 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+25/03/31 17:13:15 INFO SparkContext: Starting job: csv at Checker.java:30
+25/03/31 17:13:15 INFO DAGScheduler: Got job 1 (csv at Checker.java:30) with 1 output partitions
+25/03/31 17:13:15 INFO DAGScheduler: Final stage: ResultStage 1 (csv at Checker.java:30)
+25/03/31 17:13:15 INFO DAGScheduler: Parents of final stage: List()
+25/03/31 17:13:15 INFO DAGScheduler: Missing parents: List()
+25/03/31 17:13:15 INFO DAGScheduler: Submitting ResultStage 1 (MapPartitionsRDD[13] at csv at Checker.java:30), which has no missing parents
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 13.5 KiB, free 433.7 MiB)
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 6.4 KiB, free 433.7 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 100.64.0.123:33501 (size: 6.4 KiB, free: 434.3 MiB)
+25/03/31 17:13:15 INFO SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:1585
+25/03/31 17:13:15 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[13] at csv at Checker.java:30) (first 15 tasks are for partitions Vector(0))
+25/03/31 17:13:15 INFO TaskSchedulerImpl: Adding task set 1.0 with 1 tasks resource profile 0
+25/03/31 17:13:15 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 100.64.0.123:33501 in memory (size: 34.5 KiB, free: 434.3 MiB)
+25/03/31 17:13:15 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 1) (100.64.0.123, executor 0, partition 0, PROCESS_LOCAL, 9902 bytes) 
+25/03/31 17:13:15 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 100.64.0.123:35761 in memory (size: 34.5 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 100.64.0.123:35761 (size: 6.4 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 100.64.0.123:35761 (size: 34.5 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 1) in 82 ms on 100.64.0.123 (executor 0) (1/1)
+25/03/31 17:13:15 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+25/03/31 17:13:15 INFO DAGScheduler: ResultStage 1 (csv at Checker.java:30) finished in 0.096 s
+25/03/31 17:13:15 INFO DAGScheduler: Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+25/03/31 17:13:15 INFO TaskSchedulerImpl: Killing all running tasks in stage 1: Stage finished
+25/03/31 17:13:15 INFO DAGScheduler: Job 1 finished: csv at Checker.java:30, took 0.099621 s
+25/03/31 17:13:15 INFO BlockManagerInfo: Removed broadcast_2_piece0 on 100.64.0.123:33501 in memory (size: 34.5 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Removed broadcast_4_piece0 on 100.64.0.123:33501 in memory (size: 6.4 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Removed broadcast_4_piece0 on 100.64.0.123:35761 in memory (size: 6.4 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO FileSourceStrategy: Pushed Filters: 
+25/03/31 17:13:15 INFO FileSourceStrategy: Post-Scan Filters: 
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 199.5 KiB, free 434.0 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 100.64.0.123:33501 in memory (size: 34.5 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 34.5 KiB, free 434.2 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 100.64.0.123:33501 (size: 34.5 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO SparkContext: Created broadcast 5 from csv at Checker.java:30
+25/03/31 17:13:15 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+25/03/31 17:13:15 INFO BlockManagerInfo: Removed broadcast_3_piece0 on 100.64.0.123:35761 in memory (size: 34.5 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO FileSourceStrategy: Pushed Filters: 
+25/03/31 17:13:15 INFO FileSourceStrategy: Post-Scan Filters: 
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 199.5 KiB, free 434.0 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Removed broadcast_5_piece0 on 100.64.0.123:33501 in memory (size: 34.5 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 34.4 KiB, free 434.2 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 100.64.0.123:33501 (size: 34.4 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO SparkContext: Created broadcast 6 from collectAsList at Checker.java:39
+25/03/31 17:13:15 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+25/03/31 17:13:15 INFO SparkContext: Starting job: collectAsList at Checker.java:39
+25/03/31 17:13:15 INFO DAGScheduler: Got job 2 (collectAsList at Checker.java:39) with 1 output partitions
+25/03/31 17:13:15 INFO DAGScheduler: Final stage: ResultStage 2 (collectAsList at Checker.java:39)
+25/03/31 17:13:15 INFO DAGScheduler: Parents of final stage: List()
+25/03/31 17:13:15 INFO DAGScheduler: Missing parents: List()
+25/03/31 17:13:15 INFO DAGScheduler: Submitting ResultStage 2 (MapPartitionsRDD[22] at collectAsList at Checker.java:39), which has no missing parents
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 12.2 KiB, free 434.2 MiB)
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 6.3 KiB, free 434.2 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 100.64.0.123:33501 (size: 6.3 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:1585
+25/03/31 17:13:15 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 2 (MapPartitionsRDD[22] at collectAsList at Checker.java:39) (first 15 tasks are for partitions Vector(0))
+25/03/31 17:13:15 INFO TaskSchedulerImpl: Adding task set 2.0 with 1 tasks resource profile 0
+25/03/31 17:13:15 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 2) (100.64.0.123, executor 0, partition 0, PROCESS_LOCAL, 9902 bytes) 
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 100.64.0.123:35761 (size: 6.3 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 100.64.0.123:35761 (size: 34.4 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 2) in 169 ms on 100.64.0.123 (executor 0) (1/1)
+25/03/31 17:13:15 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+25/03/31 17:13:15 INFO DAGScheduler: ResultStage 2 (collectAsList at Checker.java:39) finished in 0.180 s
+25/03/31 17:13:15 INFO DAGScheduler: Job 2 is finished. Cancelling potential speculative or zombie tasks for this job
+25/03/31 17:13:15 INFO TaskSchedulerImpl: Killing all running tasks in stage 2: Stage finished
+25/03/31 17:13:15 INFO DAGScheduler: Job 2 finished: collectAsList at Checker.java:39, took 0.183759 s
+25/03/31 17:13:15 INFO CodeGenerator: Code generated in 16.10399 ms
+25/03/31 17:13:15 INFO FileSourceStrategy: Pushed Filters: 
+25/03/31 17:13:15 INFO FileSourceStrategy: Post-Scan Filters: 
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_8 stored as values in memory (estimated size 199.5 KiB, free 434.0 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Removed broadcast_7_piece0 on 100.64.0.123:33501 in memory (size: 6.3 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Removed broadcast_7_piece0 on 100.64.0.123:35761 in memory (size: 6.3 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_8_piece0 stored as bytes in memory (estimated size 34.4 KiB, free 433.9 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on 100.64.0.123:33501 (size: 34.4 KiB, free: 434.3 MiB)
+25/03/31 17:13:15 INFO SparkContext: Created broadcast 8 from collectAsList at Checker.java:40
+25/03/31 17:13:15 INFO FileSourceScanExec: Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes.
+25/03/31 17:13:15 INFO SparkContext: Starting job: collectAsList at Checker.java:40
+25/03/31 17:13:15 INFO DAGScheduler: Got job 3 (collectAsList at Checker.java:40) with 1 output partitions
+25/03/31 17:13:15 INFO DAGScheduler: Final stage: ResultStage 3 (collectAsList at Checker.java:40)
+25/03/31 17:13:15 INFO DAGScheduler: Parents of final stage: List()
+25/03/31 17:13:15 INFO DAGScheduler: Missing parents: List()
+25/03/31 17:13:15 INFO DAGScheduler: Submitting ResultStage 3 (MapPartitionsRDD[25] at collectAsList at Checker.java:40), which has no missing parents
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_9 stored as values in memory (estimated size 12.2 KiB, free 433.9 MiB)
+25/03/31 17:13:15 INFO MemoryStore: Block broadcast_9_piece0 stored as bytes in memory (estimated size 6.3 KiB, free 433.9 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_9_piece0 in memory on 100.64.0.123:33501 (size: 6.3 KiB, free: 434.3 MiB)
+25/03/31 17:13:15 INFO SparkContext: Created broadcast 9 from broadcast at DAGScheduler.scala:1585
+25/03/31 17:13:15 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 3 (MapPartitionsRDD[25] at collectAsList at Checker.java:40) (first 15 tasks are for partitions Vector(0))
+25/03/31 17:13:15 INFO TaskSchedulerImpl: Adding task set 3.0 with 1 tasks resource profile 0
+25/03/31 17:13:15 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 3) (100.64.0.123, executor 0, partition 0, PROCESS_LOCAL, 9902 bytes) 
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_9_piece0 in memory on 100.64.0.123:35761 (size: 6.3 KiB, free: 434.4 MiB)
+25/03/31 17:13:15 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on 100.64.0.123:35761 (size: 34.4 KiB, free: 434.3 MiB)
+25/03/31 17:13:15 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 3) in 139 ms on 100.64.0.123 (executor 0) (1/1)
+25/03/31 17:13:15 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+25/03/31 17:13:15 INFO DAGScheduler: ResultStage 3 (collectAsList at Checker.java:40) finished in 0.151 s
+25/03/31 17:13:15 INFO DAGScheduler: Job 3 is finished. Cancelling potential speculative or zombie tasks for this job
+25/03/31 17:13:15 INFO TaskSchedulerImpl: Killing all running tasks in stage 3: Stage finished
+25/03/31 17:13:15 INFO DAGScheduler: Job 3 finished: collectAsList at Checker.java:40, took 0.162656 s
+ERROR: Content of rows do not match at join_column of correctDf 5. 
+Correct Row: [5,1,wwvHwb2XU9ZkmeBfwgWCuPc2l0SNgIGUbpI0P4abjVyX6eLjCwnwqV5RKF5cNhUiv8MwaT4Zl1Bmdf053ejXUptMDxuJU1N3zIWHbLYplHpdmdqMkEkD3OwUq6rImFEQFyUcqMQrImu5IBSTEjChLo5dcTOwgGFi3j9B9T87oBF0OJZtw37QwUJaHzh5AjQqGUByCTpWMdL0m580OJQtHJrK6rue5EkjKg0uj5KeDXQuFVsnKpqUlHlEskhFlMOpRRIV12GFGpS1zgecAGOrZ65IMibeVaVz997BIyAp9B9kSW3Rg1GoUUdLQ5jvjfWHqVzB4GDeRn5fNZhC3ON3i5Qm8QfB7DQpndj5AENUz4FjUKVpWzNPSw8jZVE4gWyXcJeg6SG3COEdBwWmCX5jE6H4pErLoI1rpCVbIY9e44P0VMczDADJcJiCFCvLpQ1TfbBwgt1e7B767kohW35gSOwOhiz47AWZLlvIo2KrPTOiZnVTm1iEkY1pGQoinroHdVoErRUCcEQwDQEpazcYCUKDbRfbgy2UNutXhfNuutKR6k72ROz4gFGO9R6bgFR1oMKwxi0CjjqG1cUTE5PP9TYiJDhRmZ8amWINumkn3ntzTHcK8UmRopMybbKnddwVijnDCkeBIbtBS6Q5GaKaTw3n6DQ6OuNcebNJUavZJ5oz5by3h4hDkJOVNVeVkJS1iphqIi7taUJgBroYOOTy8kJOF6TB6Yn1VyYjBWVVN1nKpjZidWPeCBvqGUwVvvUlhp0iIoAnr0h8Do8dWPkx9kUsNQ2P57cjiRJRPebSHuAmHw4eM0AMD6H1hvI17jNtt2KhdkPuJqqWOuLG1KuhF5vGtdvu8MJ7m9OjPggGazMRnRSKNgFTMv095fNJ8NvP2MTNPgIJld9kgkCoNsXWDWWuLsf6ikxbSsUYnjwM9PLdIxIhPD884tl1SaEqYsuyfGlPLw73tWRhISesACRxL9tmeNSi6IPJt6U2,1,Bt1976gltEfYfra5KO8zgXZdSEf4Hr0F092ncQ6kpFxF6bH7GXUNZ6JB0CQue12k2Fa0GYTDSeXFPaou4b7Kg24GHlJIzXYGhhdKYlUHjukv8RIVZ7rm4jsmul67iABZbjUpwEFADfLd3MP9MBPh7D2BhcfYqVBiejiBvU7XTJyDT7rMiqGZXxd7BeQpZf1ujF6Stg7YIFIMPNeV3ZdwtgqMxqX54UI2iw95XU4HPlkBhiKjaB63g1d99I2DYR0dANClWU0wp5XMDqJNVQMokkslQ7LtXmbIvIOsJEwgrbUoYQprPcmjkAzY94lznFXgi1HiYHipB4QMdmPcMU9oV26j7Mpo8s9lGInHLYtHlVcQUQoiMCgTAEgSMTyFLrHqkoq62pVSvmJEDsXvKDHBass5iX7vshEMNlAPSsZf10TR6r8zd7DJVa8kGBuFcfo29Po2lV6Fw0APguOLjeF2fgHer0JoNTmeTvaIqNIB7TUOam6Erk1DZD4mqppV8NSHRQciCwqdMHetApuxBQzCnyV9KZoUPJkvqqqMpaBqOPbv6gI0qQu3PihCMqLCQC33rQPPINiHcAS3845R0eltQe4aqsx4nKTKL8dfEXTOh2dL1b6seEoAY2xZqxfH5ZX28gVN76TWOxDMFWNSNuipjBuYKVxja5ZAFRMvLDRhtzrbZV1hpm2POpfAgmOf5HaH9Ii0F2N9Etbh4HLF8WyZLKU4rtDZQVSoAKogcHZcVpGetTwvHVJsmG1vjrtQqkHF3oRZAsuMdexPV0RywY0QkWIGyqwAR2IlJdwl7RRNbHL8pVhMv2LJLLUOAczW8DHbTK5s14jl0I3IWg11smYrMgwwrE0w9aECRdeDS2Oo6xdQVTDpEjjROAh6HU9I2D3aSsw0jo3oXREpr3JBXuANdhmhWXoWeJqyPLMaqmRjb1vLBQuMhkC8O9Rqnx6JjHOroRYGV9vl1X4pHZjePIFE3IZcceYXnM9Ln6vw,file:///home/aryan/584/cse-584-final-project/benchmark-datasets/L5_R5_M1-1_RS1000_SF/R/1.csv]. 
+Generated Row: [4,2,yqHB3B3Ld1XmBLotSWMAnOKGFwoAe80ZIbPgYaOaCJ1buEZey0UHV2owE5zBlp20Mb9u7OtE7pPhWGqKDmlIvch36NmIsJxyJW0DdKtNvOS0JtePpgscGQivc2BPzrdN4ddmMDlQAT1FymoifNO63oEUsJjiLMeJt6kjko8XsgpDqgsvPe7iTdYnonNfgSH7bC727nQ69e7AMOSVALiEcC4pOn6lB7NMwd4vvStOFtYyFybV7wYd9UPxiBZXmFpoakkNB9Lp8jEJj8Fzd2N0gCmrtRkthVmFJZ6bdk16g4Od7H0rMRLpyNcQaFwYP255DcEg2xiC39wNXgEG5duzuOFQPUzKDprr7M05H6i3lYKG14RH6fB9fzSqzQV9PrXBoNDgl9VNfRBogrSdEQ4TS9TBzJ5YTYXVITPkfjqT4szUYVDWt6VcmOiKC87fZEURc7VppVkMFgv5iGXQqiYKW6JHXRVOGy3WcfglVaLEno9GBI6sSJf5UXEmq3KpDRrHxnC0ISvAv4BjhnVeJ8RSLO1l09v9K8zRnU9tQ2LF0BmACTHg3xH9yrDAbLDLK0jEt9YijqLJcUQF4SeIuHiDbGPqsyRXkPIXHnW39TwoO3PYhpRiM4Qg0Pt5BUXdZDMAFsAaUhVviKUTk7wXLBzp3UPQK4kweUJgcTKMTMN2dLmXsBRIucVVUWcZfR453NzLFV8bguzW0HpJ02BvSBFWEcZR7Od8CIl2mZaWpVjMtqC5ef6U4Zomkdhn5o6p8jZBovMhH3tgkJz3J5em6rWECDTSYTxfEkgqLXRTzGLyCuWThQrlayXMGDKAdn4OfQ80vO2f8aKIpeJZQ4LhvFAMdalNe0OowPZwNPhRNPQIpcrc8jEraaRcpdI4k14Cg5Us5jJtjz1isCrNLJANahAjENmxDZfOi7rP6wWK6vOrZX19XH8BQSUK9lY7OJGaSZgk074Owsk0p4mx0RsWPu5irgGu5vyMun3gseox,2,GgdtytBIzLn4KBffjdUWYtrnQDwIysMEujc1PWWDdlPkuzv3xW6KXPNYs4UJ5iOtaWMJIhWqCBvu1SkIlglUw4Ci9olV9milp626cTTFHh4O1sjC5UkVHwA28jENflMxrO6WQNjiwL761Ng83oUyAR5hN8j6tc0RAKrOYtLELxChIUDDy42HQL0pYXkYRycCDnzS6F6yiLRQZ1HjUvLa7HMxvYBOScJhJX7rWVrwdCOrFmT86eHDqtYoBztURAvZHC3lUmeqo7LzDATgQx0lrwz7gjOdUZmF2TYsY25lEGzBWPY3pRQX2xlHVYbfIbrQWllabMIaEqtubCvNbzt7bWqDj6BwMRZjcjXzdCHFAl816tz8viU6bB3lU31fteefmweLCpN7Fk09eqUcQ89H7uSpz4IgKHVIwWmgwQadlTUmPaBJxPvmqfnJsR5ZGcbxQPgYx9aJujdsifmv9s7I8tqgHjFJYiawZvtaArNzED65rk5eFqargYjJxj0lpE236xLuVmDF5Kykql7Gso7ZcScxloYz075Chi7pdB1ctH9p3BjOTT7ZGcoerKlzQMgQDktpa8yzHB9X6i5WtqjQ5ZBChOUceOKzxFPxvog1iV6oUUaEat8TazQldnwSdzOldXjQZNo95WQUMaZOQIbT0uj6mBb3DTbKa16zpycX0BoxKk2z7uQDUdgbkDTQ2oc20peTW0n96XhLfaFfDUSCH6GM56EniCI6ptLZJyM2cqP0O3hJCy5VsS6iav9BAo8y5cr8SRvMYjHOGyxjkSHzEQmT6LNfvl7OzrP60YZMjr61HRQ6lMMvKoUk202QxOn0XOzu39dN5RFL0QOqy0gXTUZeyDFXtepSJOoDLDr0KsV9mcDrbTQmVoRT2qu9jQOks2toDeng9bNxvFPKcOgAeKvmgLLWT2faeBWjyo1tEfW6wOPh5y6IueX94oLdUwd7NKRAJi0EDKUsZncSWpZfMdwNcc7xRLPuizgl,file:///home/aryan/584/cse-584-final-project/benchmark-datasets/L5_R5_M1-1_RS1000_SF/R/1.csv]
+25/03/31 17:13:15 INFO SparkContext: SparkContext is stopping with exitCode 0.
+25/03/31 17:13:15 INFO SparkUI: Stopped Spark web UI at http://100.64.0.123:4040
+25/03/31 17:13:15 INFO StandaloneSchedulerBackend: Shutting down all executors
+25/03/31 17:13:15 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Asking each executor to shut down
+25/03/31 17:13:15 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+25/03/31 17:13:15 INFO MemoryStore: MemoryStore cleared
+25/03/31 17:13:15 INFO BlockManager: BlockManager stopped
+25/03/31 17:13:15 INFO BlockManagerMaster: BlockManagerMaster stopped
+25/03/31 17:13:15 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+25/03/31 17:13:15 INFO SparkContext: Successfully stopped SparkContext
+25/03/31 17:13:15 INFO ShutdownHookManager: Shutdown hook called
+25/03/31 17:13:15 INFO ShutdownHookManager: Deleting directory /tmp/spark-b045c414-d689-45fe-b243-b469420c7ec4
+25/03/31 17:13:15 INFO ShutdownHookManager: Deleting directory /tmp/spark-ed785481-6a7b-4f9d-a876-288a6cc90a8d

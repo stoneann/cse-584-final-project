@@ -55,7 +55,7 @@ class GenerateData:
             random.shuffle(join_ids)
 
         file_num = 1
-        while id < cardinality:
+        while id < (cardinality + 1):
             self.add_row(table, id, join_ids[id - 1])
             id = id + 1
             # if we have 100 MB, write table to file and clear it

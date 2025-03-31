@@ -13,27 +13,27 @@ import org.apache.spark.sql.catalyst.encoders.RowEncoder;
 import org.apache.spark.sql.functions;
 import org.apache.spark.sql.types.StructType;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.CopyObjectRequest;
-import com.amazonaws.services.s3.model.DeleteObjectRequest;
-import com.amazonaws.services.s3.model.ListObjectsRequest;
-import com.amazonaws.services.s3.model.S3Object;
+// import com.amazonaws.auth.AWSStaticCredentialsProvider;
+// import com.amazonaws.auth.BasicAWSCredentials;
+// import com.amazonaws.services.s3.AmazonS3;
+// import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+// import com.amazonaws.services.s3.model.CopyObjectRequest;
+// import com.amazonaws.services.s3.model.DeleteObjectRequest;
+// import com.amazonaws.services.s3.model.ListObjectsRequest;
+// import com.amazonaws.services.s3.model.S3Object;
 
 import scala.Function1;
 
 public class SimpleJoin {
     public static void main(String[] args) throws IOException {
-        if (args.length < 3) {
-            System.err.println("Usage: CsvJoinExample <big_table_csv_path> <small_table_csv_path> <output_path>");
-            System.exit(1);
-        }
+        // if (args.length < 3) {
+        //     System.err.println("Usage: CsvJoinExample <big_table_csv_path> <small_table_csv_path> <output_path>");
+        //     System.exit(1);
+        // }
 
-        String csv1Path = args[0];  // First CSV file
-        String csv2Path = args[1];  // Second CSV file
-        String outputPath = args[2];  // Output path
+        String csv1Path = "/home/aryan/584/cse-584-final-project/benchmark-datasets/L5_R5_M1-1_RS1000_SF/L/1.csv"; // args[0];  // First CSV file
+        String csv2Path = "/home/aryan/584/cse-584-final-project/benchmark-datasets/L5_R5_M1-1_RS1000_SF/R/1.csv";  // Second CSV file
+        String outputPath = "/home/aryan/584/cse-584-final-project/benchmark-datasets/L5_R5_M1-1_RS1000_SF/JOIN/5.csv";  // Output path
 
         // Create a SparkSession
         SparkSession spark = SparkSession.builder()
