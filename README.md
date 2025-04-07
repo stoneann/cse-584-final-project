@@ -52,11 +52,15 @@ Joins using only a few partitions of the big table by using the index, the resul
 Argument 1: Big table location (e.g. s3://584spark-east2/datasets/L1000000_R1000000_M1-1_RS1000_SF/L/)
 Argument 2: Small table location (e.g. s3://584spark-east2/datasets/L1000000_R1000000_M1-1_RS1000_SF/R/)
 Argument 3: Output path (e.g. s3://584spark-east2/output-join/)
-Argument 4: Index path (e.g. s3://584spark-east2/output-index/)
+Argument 4: Index path (e.g. output-index/)
 Argument 5: Index file name. Due to spark limitations, renaming output files are hard so we have to use whatever default name Spark uses. Look in one of the sm_source_file directories for a file and copy the name, this file name is the exact same for all index files. (e.g. part-00000-05e3e96a-315b-4248-b13f-80e227fa257f.c000.csv)
 Argument 6: List of big table file numbers to be used, separated by commas, no spaces. (e.g. 3,4,5)
 
 Performs the join with the given big table files using the index.
+
+# Secrets.java
+
+This contains the AWS access key and is needed to compile streamjoin, let me know (Daniel Tian) if you need this.
 
 # IMPORTANT
 
