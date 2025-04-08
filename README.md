@@ -35,6 +35,57 @@ Follow these instructions to set up an EMR cluster: https://medium.com/big-data-
 
 Once the cluster is set up, you can configure a step. Use the same setup in the instructions, use the jar you uploaded to the S3 bucket in the application location section, and your class parameter should be org.spark.test.App (whatever has the main function). For the test spark program, the first parameter is the text file input, and the second parameter is the directory to dump the output to, same as the instructions.
 
+# Setup CloudWatch Metrics
+
+When creating a cluster, after selecting your application bundle (e.g. Spark, Presto), in the checkboxes below also select "AmazonCloudWatchAgent 1.300032.2". Finish creating the cluster as normal.
+
+After the cluster has finished setting up, go to Configurations > Instance Group Configurations, select any of the instance groups and click Reconfigure. Select Edit JSON and paste the below JSON: 
+
+[
+  {
+    "Classification": "emr-metrics",
+    "Configurations": [
+      {
+        "Classification": "emr-system-metrics",
+        "Configurations": [
+          {
+            "Classification": "cpu",
+            "Properties": {
+              "drop_original_metrics": "cpu_usage_guest",
+              "metrics": "cpu_usage_active,cpu_usage_guest,cpu_usage_guest_nice,cpu_usage_idle,cpu_usage_iowait,cpu_usage_irq,cpu_usage_nice,cpu_usage_softirq,cpu_usage_steal,cpu_usage_system,cpu_usage_user",
+              "metrics_collection_interval": "10"
+            }
+          },
+          {
+            "Classification": "mem",
+            "Properties": {
+              "metrics": "mem_active, mem_available, mem_available_percent, mem_free,mem_inactive,mem_total,mem_used,mem_used_percent,mem_buffered,mem_cached"
+            }
+          },
+          {
+            "Classification": "disk",
+            "Properties": {
+              "drop_original_metrics": "",
+              "metrics": "disk_used_percent, disk_free,disk_total,disk_used",
+              "resources": "/,/mnt"
+            }
+          }
+        ],
+        "Properties": {
+          "metrics_collection_interval": "10"
+        }
+      }
+    ],
+    "Properties": {}
+  }
+]
+
+Before clicking submit, also check apply to all active instance groups so that this configuration will apply to all nodes. If you forget to do this, you can also just reconfigure every instance group one by one using the same process.
+
+Finally, under Properties > Permissions > EC2 Instance Profile, you should see a name like "AmazonEMR-InstanceProfile-20250315T173317". This is an IAM role, and you need to give it permissions to write to CloudWatch. Leave EMR and go to the IAM dashboard, go to roles and find the role with the exact name. Then go to Permissions > Add Permissions > Attach Policies, search up "CloudWatchFullAccess", and select both CloudWatchFullAccess and CloudWatchFullAccessV2, and click Add Permissions.
+
+Done! You should see the posted metrics in the cluster's EMR dashboard, under Monitoring > CloudWatch agent - new, in particular the node memory usage and CPU utilization.
+
 ## GenerateIndex.java
 
 Generates the index. 
