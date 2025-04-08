@@ -11,6 +11,7 @@
         <!-- <exec.mainClass>org.spark.test.StreamJoin</exec.mainClass> -->
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <exec.mainClass>org.spark.test.GenerateIndex</exec.mainClass>
     </properties>
 
     <dependencies>

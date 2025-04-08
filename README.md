@@ -45,6 +45,8 @@ Argument 3: Output path (e.g. s3://584spark-east2/output-index/)
 
 This will generate a list of csv files, one corresponding to each small table file, of the format big_table_file_number, small_table_id. Remember your output path for running the stream join job.
 
+The tail end of this task is slow as in order to output one index file per small table file, the current infrastructure requires all data to go through one node, as shown by repartition(1) in line 83. This removes parallelization and makes this step slow, this can be mitigated by instead outputting more than one index file per small table file, by changing it to like repartition(10) for 10 index files per small table file. This slightly changes the API for StreamJoin. 
+
 ## StreamJoin.java
 
 Joins using only a few partitions of the big table by using the index, the results are dumped to S3 but in practice it should be dumped to Kafka or directly to consumers.
@@ -52,9 +54,15 @@ Joins using only a few partitions of the big table by using the index, the resul
 Argument 1: Big table location (e.g. s3://584spark-east2/datasets/L1000000_R1000000_M1-1_RS1000_SF/L/)
 Argument 2: Small table location (e.g. s3://584spark-east2/datasets/L1000000_R1000000_M1-1_RS1000_SF/R/)
 Argument 3: Output path (e.g. s3://584spark-east2/output-join/)
-Argument 4: Index path (e.g. output-index/)
-Argument 5: Index file name. Due to spark limitations, renaming output files are hard so we have to use whatever default name Spark uses. Look in one of the sm_source_file directories for a file and copy the name, this file name is the exact same for all index files. (e.g. part-00000-05e3e96a-315b-4248-b13f-80e227fa257f.c000.csv)
-Argument 6: List of big table file numbers to be used, separated by commas, no spaces. (e.g. 3,4,5)
+Argument 4: Index path (e.g. output-index/) Note: uses s3 keys not ARNs, so no s3:///584spark-east2/ prefix.
+Argument 5: Index file name. Due to spark limitations, renaming output files are hard so we have to use whatever default name Spark uses. Look in one of the sm_source_file directories for a file and copy the name, this file name is the exact same for all index files. (e.g. part-00000-05e3e96a-315b-4248-b13f-80e227fa257f.c000.csv).
+
+In the case that you made GenerateIndex output more than one index file per small-table file, concatenate all file names and separate with commas, no spaces. (e.g. part-00000-05e3e96a-315b-4248-b13f-80e227fa257f.c000.csv,part-00000-05e3e96a-315b-4248-b13f-80e227fa257f.c000.csv,part-00000-05e3e96a-315b-4248-b13f-80e227fa257f.c000.csv)
+
+Argument 6: Starting big table file.
+Argument 7: Ending big table file. (e.g., arg6=10 and arg7=20 means reading files 10,11,12,13,14,15,16,17,18,19).
+Argument 8: Starting small table file.
+Argument 9: Ending small table file. (e.g. arg8=1 and arg9=1001 means reading the first 1000 files of the small table (aka all small table files in the large dataset scenario)).
 
 Performs the join with the given big table files using the index.
 
