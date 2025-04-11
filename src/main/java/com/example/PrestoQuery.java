@@ -19,6 +19,10 @@ public class PrestoQuery {
         String tableTwo = args[1];
         String csvOutput = args[2];
         String prestoIp = args[3];
+        System.out.println("Table 1: " + tableOne);
+        System.out.println("Table 2: " + tableTwo);
+        System.out.println("Output: " + csvOutput);
+        System.out.println("Host: " + prestoIp);
 
         Class.forName("io.prestosql.jdbc.PrestoDriver");
 
@@ -27,15 +31,27 @@ public class PrestoQuery {
         props.setProperty("user", "emrtestuser");
 
         Connection conn = DriverManager.getConnection(url, props);
+        Statement geStmt = conn.createStatement();
+        geStmt.execute("SET SESSION grouped_execution = true");
+    
+
+        System.out.println("Executed Grouped Execution");
+
+        Statement rgeStmt = conn.createStatement();
+        rgeStmt.execute("SET SESSION recoverable_grouped_execution = true");
+        System.out.println("Executed Recovery Grouped Execution");
+
+
+        String sqlQuery = "SELECT * FROM \"10_db\"." + tableOne + " t1 JOIN \"10_db\"." + tableTwo + " t2 ON t1.join_id = t2.join_id";
+        System.out.println(sqlQuery);
         Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery("SET SESSION grouped_execution = true;\n" + 
-                        "SET SESSION recoverable_grouped_execution = true;\n" + 
-                        "SELECT * \n" + 
-                        "FROM \"10_db\"." + tableOne + " \n" + 
-                        "JOIN \"10_db\"." + tableTwo + " \n" +
-                        "ON t1.join_id = t2.join_id\n");
+        ResultSet rs = stmt.executeQuery(sqlQuery);
+
+        System.out.println("Executed Join");
 
         writeResultSetToCSV(rs, csvOutput);
+
+        System.out.println("Wrote to CSV");
 
         rs.close();
         stmt.close();
