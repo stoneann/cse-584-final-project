@@ -74,20 +74,43 @@ public class PrestoQuery {
         conf.set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem");
 
         FileSystem fs = FileSystem.get(new URI("s3a://584spark-east2/"), conf);
-        Path outputPath = new Path(csvFilePath);
+        int rowCount = 0;
+        int fileIndex = 1;
+        PrintWriter writer = null;
+        OutputStream out = null;
 
-        try (OutputStream out = fs.create(outputPath);
-             PrintWriter writer = new PrintWriter(out)) {
-
-            // Write header
-            for (int i = 1; i <= columnCount; i++) {
-                writer.print(meta.getColumnName(i));
-                if (i < columnCount) writer.print(",");
-            }
-            writer.println();
-
-            // Write data
+        try {
             while (rs.next()) {
+                // Start new file if needed
+                if (rowCount % 100 == 0) {
+                    // Close previous writer
+                    if (writer != null) 
+                    {
+                        writer.close();
+                    }
+                    if (out != null) {
+                        out.close();
+                    }
+
+                    // Create new file
+                    String newFilePath = csvFilePath + fileIndex + ".csv";
+                    Path outputPath = new Path(newFilePath);
+                    out = fs.create(outputPath);
+                    writer = new PrintWriter(out);
+
+                    // Write header
+                    for (int i = 1; i <= columnCount; i++) {
+                        writer.print(meta.getColumnName(i));
+                        if (i < columnCount) {
+                            writer.print(",");
+                        }
+                    }
+                    writer.println();
+
+                    fileIndex++;
+                }
+
+                // Write row
                 for (int i = 1; i <= columnCount; i++) {
                     String val = rs.getString(i);
                     if (val != null) {
@@ -100,6 +123,15 @@ public class PrestoQuery {
                     if (i < columnCount) writer.print(",");
                 }
                 writer.println();
+                rowCount++;
+            }
+        } finally {
+            // Final cleanup
+            if (writer != null) {
+                writer.close();
+            }
+            if (out != null) {
+                out.close();
             }
         }
     }
