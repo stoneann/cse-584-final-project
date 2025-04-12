@@ -1,12 +1,18 @@
 package com.example;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.Properties;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
+import java.io.OutputStream;
 
 
 public class PrestoQuery {
@@ -62,7 +68,17 @@ public class PrestoQuery {
         ResultSetMetaData meta = rs.getMetaData();
         int columnCount = meta.getColumnCount();
 
-        try (PrintWriter writer = new PrintWriter(new FileWriter(csvFilePath))) {
+        // Hadoop S3 config
+        Configuration conf = new Configuration();
+        conf.set("fs.s3a.endpoint", "s3.us-east-2.amazonaws.com");
+        conf.set("fs.s3a.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem");
+
+        FileSystem fs = FileSystem.get(new URI("s3a://584spark-east2/"), conf);
+        Path outputPath = new Path(csvFilePath);
+
+        try (OutputStream out = fs.create(outputPath);
+             PrintWriter writer = new PrintWriter(out)) {
+
             // Write header
             for (int i = 1; i <= columnCount; i++) {
                 writer.print(meta.getColumnName(i));
@@ -70,19 +86,17 @@ public class PrestoQuery {
             }
             writer.println();
 
-            // Write rows
+            // Write data
             while (rs.next()) {
                 for (int i = 1; i <= columnCount; i++) {
-                    String value = rs.getString(i);
-                    if (value != null) {
-                        // Escape quotes
-                        value = value.replace("\"", "\"\"");
-                        // Wrap in quotes if contains comma or quote
-                        if (value.contains(",") || value.contains("\"")) {
-                            value = "\"" + value + "\"";
+                    String val = rs.getString(i);
+                    if (val != null) {
+                        val = val.replace("\"", "\"\"");
+                        if (val.contains(",") || val.contains("\"")) {
+                            val = "\"" + val + "\"";
                         }
                     }
-                    writer.print(value != null ? value : "");
+                    writer.print(val != null ? val : "");
                     if (i < columnCount) writer.print(",");
                 }
                 writer.println();
