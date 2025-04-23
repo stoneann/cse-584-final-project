@@ -4,6 +4,9 @@ import os
 import csv
 import random
 import string
+import time
+import boto3
+from io import StringIO
 
 # Class to generate benchmarking data
 class GenerateData:
@@ -14,6 +17,8 @@ class GenerateData:
         self.rtm = rtm
         self.rbs = rbs
         self.sorted = sorted
+        self.AWS_ACCESS_KEY = ""
+        self.AWS_SECRET_KEY = ""
 
     # Generate a row with an id, join id, and a random string to get the record bytes to the desired amount
     def add_row(self, table, id, join_id):
@@ -37,13 +42,36 @@ class GenerateData:
                 writer = csv.DictWriter(file, fieldnames=data[0].keys())
                 writer.writerows(data)
 
+    def create_directory_and_write_s3(self, dir_file_name, data):
+        # Convert data to CSV format
+        csv_buffer = StringIO()
+        csv_writer = csv.DictWriter(csv_buffer, fieldnames=data[0].keys())  # Use dictionary keys as headers
+        # csv_writer.writeheader()
+        csv_writer.writerows(data)
+        # print(csv_buffer.getvalue())
+        try:
+            # Create s3 client
+            s3 = boto3.client(
+                's3',
+                aws_access_key_id=self.AWS_ACCESS_KEY,
+                aws_secret_access_key=self.AWS_SECRET_KEY
+            )
+            bucket_name = '584spark-east2'
+            print("Writing file...")
+            # Upload CSV to S3
+            s3.put_object(Bucket=bucket_name, Key=dir_file_name, Body=csv_buffer.getvalue())
+        except:
+            print("Error")
+
 
     def export_to_file(self, table, l_or_r, num):
         s_bool = "F"
         if self.sorted:
             s_bool = "T"
-        self.create_directory_and_write_csv(f"benchmark-datasets/L{self.ltc}_R{self.rtc}_M{self.ltm}-{self.rtm}_RS{self.rbs}_S{s_bool}/{l_or_r}", f"{num}.csv", table)
-        table.clear()
+        if len(table) > 0:
+            self.create_directory_and_write_s3(f"datasets/L{self.ltc}_R{self.rtc}_M{self.ltm}-{self.rtm}_RS{self.rbs}_S{s_bool}/{l_or_r}/{num}.csv", table)
+        # self.create_directory_and_write_csv(f"benchmark-datasets/L{self.ltc}_R{self.rtc}_M{self.ltm}-{self.rtm}_RS{self.rbs}_S{s_bool}/{l_or_r}", f"{num}.csv", table)
+            table.clear()
 
     # fills a table
     def generate_table(self, cardinality, mapping, l_or_r):
@@ -72,8 +100,8 @@ class GenerateData:
 
 
 @click.command()
-@click.option('--left-table-cardinality', '-ltc', type=click.INT, default=100000, help='Cardinality of Left Table')
-@click.option('--right-table-cardinality', '-rtc', type=click.INT, default=100000, help='Cardinality of Right Table')
+@click.option('--left-table-cardinality', '-ltc', type=click.INT, default=10000000, help='Cardinality of Left Table')
+@click.option('--right-table-cardinality', '-rtc', type=click.INT, default=10000000, help='Cardinality of Right Table')
 @click.option('--left-table-mapping', '-ltm', type=click.INT, default=1, help='Number of records in left table that joins to right.')
 @click.option('--right-table-mapping', '-rtm', type=click.INT, default=1, help='Number of records in right table that joins to left.')
 @click.option('--record-byte-size', '-rbs', type=click.INT, default=1000, help='Size of an individual record in bytes.')
@@ -84,8 +112,12 @@ def main(left_table_cardinality, right_table_cardinality, left_table_mapping, ri
     """
     click.echo(f"Generating a dataset that with tables of cardinality {left_table_cardinality} and {right_table_cardinality}.")
     click.echo(f"It will create a {left_table_mapping} - {right_table_mapping} mapping.")
+    start_time = time.time()
     generate_data = GenerateData(left_table_cardinality, right_table_cardinality, left_table_mapping, right_table_mapping, record_byte_size, sorted)
     generate_data.generate_data()
+    end_time = time.time()
+    elapsed_time = end_time - start_time
+    print(f"Elapsed time: {elapsed_time} seconds")
 
 
 if __name__ == '__main__':
