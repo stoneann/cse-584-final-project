@@ -1,7 +1,27 @@
 # cse-584-final-project
 
 ## benchmark-datasets-generation Folder
-Contains any files related to generating a dataset for benchmarking and evaluation in our project.
+Contains any files related to generating a dataset for benchmarking and evaluation in our project. It also contains one small sample dataset just for professor and programmer visibility. The program is written in python and takes the following arguments. 
+
+Usage: generate.py [OPTIONS] 
+
+  A program to generate a dataset 
+
+Options: <br />
+  -ltc, --left-table-cardinality INTEGER <br />
+                                  Cardinality of Left Table <br />
+  -rtc, --right-table-cardinality INTEGER <br />
+                                  Cardinality of Right Table <br />
+  -ltm, --left-table-mapping INTEGER <br />
+                                  Number of records in left table that joins to right. <br />
+  -rtm, --right-table-mapping INTEGER <br />
+                                  Number of records in right table that joins to left. <br />
+  -rbs, --record-byte-size INTEGER <br />
+                                  Size of an individual record in bytes. <br />
+  -s, --sorted BOOLEAN  <br />
+                                  If true, dataset will be sorted by join index. If false, datset will be random. <br />
+  --help  <br />
+                                  Show this message and exit. <br />
 
 ## benchmark-datasets Folder
 Contains the actual datasets for benchmarking and evaluating our project. Added to gitignore due to size of files. Note the following naming schema:
@@ -19,6 +39,9 @@ Definitions:
 * <strong>record_size</strong>: Number of bytes in a record
 * <strong>l_or_r</strong>: Left or Right table. L if left, R if right.
 * <strong>sorted</strong>: T or F. If T, sorted based on join_id. If F, random join_ids.
+
+## presto Folder
+This folder contains the code for running presto. We ran presto using a java job. The pom.xml is the maven build dependencies. The src folder is the source code for the join. The target folder is the most recent build of the presto java project.
 
 ## spark Folder
 Contains the current spark program. Currently just a test word count program.
