@@ -23,6 +23,12 @@ Options: <br />
   --help  <br />
                                   Show this message and exit. <br />
 
+To run, please use the following steps:
+1. python -m venv venv
+2. source venv/bin/activate
+3. pip install -r requirements.txt
+4. benchmark-datasets-generation/generate.py
+
 ## benchmark-datasets Folder
 Contains the actual datasets for benchmarking and evaluating our project. Added to gitignore due to size of files. Note the following naming schema:
 
@@ -41,7 +47,11 @@ Definitions:
 * <strong>sorted</strong>: T or F. If T, sorted based on join_id. If F, random join_ids.
 
 ## presto Folder
-This folder contains the code for running presto. We ran presto using a java job. The pom.xml is the maven build dependencies. The src folder is the source code for the join. The target folder is the most recent build of the presto java project.
+This folder contains the code for running presto. We ran presto using a java job. The pom.xml is the maven build dependencies. The src folder is the source code for the join. The target folder is the most recent build of the presto java project. 
+
+Running the program:
+
+Follow the instructions in the "spark Folder" section of this readme. When creating a new cluster, it will have a few different configurations. Please follow the directions in RunningPresto.pdf as there are some helpful images.
 
 ## spark Folder
 Contains the current spark program. Currently just a test word count program.
